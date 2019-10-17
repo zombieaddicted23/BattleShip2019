@@ -1,24 +1,26 @@
 import java.util.Scanner; 
 
 public class BattleShip {
-	
+	public static final int MAX_SHOTS =20;
 	public static final int SHIP_SYMBOL = 'S';
 	public static final int WATER_SYMBOL = 'O';
 	public static final int SUNK_SHIP_SYMBOL = 'X';
 	public static final int EMPTY_SYMBOL = '.';
-	
+	static int remainingShots;
 	public static final int NUM_SHIPS = 10;
 	public static final int DIMENSION = 8;	
 	static char[][] matrix = new char[DIMENSION][DIMENSION];
 	static boolean gameOver;
-		
+	static int sunkShipsCounter;
+	
 	public static void main(String[] args) {
 		
 		char letter;
 		int number;
 		Scanner input = new Scanner(System.in);
-			     	     	
+		sunkShipsCounter=0;	     	     	
 		gameOver = false;
+		remainingShots = MAX_SHOTS;
 	    initMatrix();
 	    addShipsToMatrix();
 	    	     
@@ -29,10 +31,21 @@ public class BattleShip {
 	    	System.out.println("Enter column (Number): ");
 	    	number = input.nextInt();
 	    	shoot(letter, number);
+	    	checkGameOver();
 	    }
+	    
+	    
 	     
 	}
 	
+	private static void checkGameOver() {
+		if (sunkShipsCounter >= NUM_SHIPS || remainingShots<=0) {
+			gameOver = true;
+		}
+		
+		
+	}
+
 	private static void shoot(char letter, int number) {
 		
 		int row = letter - 'A';
@@ -43,7 +56,8 @@ public class BattleShip {
 				System.out.println("You have already shot in that position");
 			}else {
 				if (matrix[row][col] == SHIP_SYMBOL)	{
-					matrix[row][col] = SUNK_SHIP_SYMBOL;		
+					matrix[row][col] = SUNK_SHIP_SYMBOL;
+					sunkShipsCounter++;
 					
 				} else {
 				matrix[row][col] = WATER_SYMBOL;
