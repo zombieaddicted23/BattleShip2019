@@ -51,6 +51,7 @@ public class BattleShip {
 		int row = letter - 'A';
 		int col = number - 1;
 		
+		remainingShots --;
 		
 			if(matrix[row][col] == WATER_SYMBOL || matrix[row][col] == SUNK_SHIP_SYMBOL) {
 				System.out.println("You have already shot in that position");
