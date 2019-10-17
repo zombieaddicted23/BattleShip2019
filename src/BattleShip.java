@@ -37,7 +37,22 @@ public class BattleShip {
 	    showResult();
 	     
 	}
-	
+	/*private static void askCoordinates(Scanner input) {
+		letter = 'º';
+		boolean firstValue = true;
+		while (!letterInGoodRange(firstValue)) {
+			System.out.println("Enter row (Letter):");
+			letter = input.next().toUpperCase().charAt(0);
+			firstValue = false;
+		}
+		number = -1;
+		firstValue = true;
+		while (!numberInGoodRange(firstValue)) {
+			System.out.println("Enter column (Number): ");
+			number = input.nextInt();
+			firstValue = false;
+		}
+	}*/
 	private static void showResult() {
 		if (sunkShipsCounter >= NUM_SHIPS ) {
 			System.out.println("You Win");
