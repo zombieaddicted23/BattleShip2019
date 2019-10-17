@@ -25,7 +25,7 @@ public class BattleShip {
 	    while(!gameOver) {
 	    	printMatrix(false);
 	    	System.out.println("Enter row (Letter):");
-	    	letter = input.next().charAt(0);
+	    	letter = input.next().toUpperCase().charAt(0);
 	    	System.out.println("Enter column (Number): ");
 	    	number = input.nextInt();
 	    	shoot(letter, number);
@@ -38,8 +38,19 @@ public class BattleShip {
 		int row = letter - 'A';
 		int col = number - 1;
 		
-		//if (matrix[row][col] == ...)
 		
+			if(matrix[row][col] == WATER_SYMBOL || matrix[row][col] == SUNK_SHIP_SYMBOL) {
+				System.out.println("You have already shot in that position");
+			}else {
+				if (matrix[row][col] == SHIP_SYMBOL)	{
+					matrix[row][col] = SUNK_SHIP_SYMBOL;		
+					
+				} else {
+				matrix[row][col] = WATER_SYMBOL;
+				}
+				
+			}
+			
 	}
 
 	private static void addShipsToMatrix() {
